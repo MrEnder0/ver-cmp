@@ -1,6 +1,8 @@
+use std::cmp::Ordering;
+
 mod test;
 
-pub fn is_ver_greater(ver1: &str, ver2: &str) -> Result<bool, &'static str> {
+pub fn compare_versions(ver1: &str, ver2: &str) -> Result<Ordering, &'static str> {
     let ver1: Vec<u32> = ver1.split('.').map(|s| s.parse().unwrap()).collect();
     let ver2: Vec<u32> = ver2.split('.').map(|s| s.parse().unwrap()).collect();
 
@@ -11,19 +13,20 @@ pub fn is_ver_greater(ver1: &str, ver2: &str) -> Result<bool, &'static str> {
 
     for (v1, v2) in ver1.iter().zip(ver2.iter()) {
         match v1.cmp(v2) {
-            std::cmp::Ordering::Greater => return Ok(true),
-            std::cmp::Ordering::Less => return Ok(false),
+            std::cmp::Ordering::Greater => return Ok(Ordering::Greater),
+            std::cmp::Ordering::Less => return Ok(Ordering::Less),
             _ => continue,
         }
     }
     
-    Err("Versions are equal")
+    Ok(Ordering::Equal)
 }
 
 pub fn greater_ver(ver1: &str, ver2: &str) -> Result<String, &'static str> {
-    let greater = match is_ver_greater(ver1, ver2) {
-        Ok(true) => ver1,
-        Ok(false) => ver2,
+    let greater = match compare_versions(ver1, ver2) {
+        Ok(Ordering::Greater) => ver1,
+        Ok(Ordering::Less) => ver2,
+        Ok(Ordering::Equal) => ver1,
         Err(_) => return Err("Unable to compare versions due to invalid version format"),
     };
 

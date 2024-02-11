@@ -1,5 +1,6 @@
 use clap::Parser;
-use ver_cmp::{greater_ver, is_ver_greater};
+use std::cmp::Ordering;
+use ver_cmp::{greater_ver, compare_versions};
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -20,9 +21,10 @@ fn main() {
     let args = Args::parse();
 
     if args.compare {
-        match is_ver_greater(&args.ver1, &args.ver2) {
-            Ok(true) => println!("0"),
-            Ok(false) => println!("1"),
+        match compare_versions(&args.ver1, &args.ver2) {
+            Ok(Ordering::Greater) => println!("0"),
+            Ok(Ordering::Less) => println!("1"),
+            Ok(Ordering::Equal) => println!("2"),
             Err(e) => println!("Error: {}", e),
         }
     } else {

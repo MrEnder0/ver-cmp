@@ -2,20 +2,20 @@ use super::*;
 
 #[test]
 fn test_is_ver_greater() {
-    // Returns true due to it being greater
-    assert!(is_ver_greater("4.2.3", "1.2.2").unwrap());
-    // Returns false due to it being lesser
-    assert!(!is_ver_greater("0.5.3", "1.2.4").unwrap());
-    // Returns false due to it being equal
-    assert!(!is_ver_greater("0.1.0", "0.1.0").unwrap());
+    // Returns greater
+    assert_eq!(compare_versions("4.2.3", "1.2.2").unwrap(), Ordering::Greater);
+    // Returns less
+    assert_eq!(compare_versions("0.5.3", "1.2.4").unwrap(), Ordering::Less);
+    // Returns equal
+    assert_eq!(compare_versions("0.1.0", "0.1.0").unwrap(), Ordering::Equal);
     // Returns error due to invalid version format for ver1
     assert_eq!(
-        is_ver_greater("1.2", "1.2.3").unwrap_err(),
+        compare_versions("1.2", "1.2.3").unwrap_err(),
         "Invalid version format"
     );
     // Returns error due to invalid version format for ver2
     assert_eq!(
-        is_ver_greater("0.2.3", "1.2").unwrap_err(),
+        compare_versions("0.2.3", "1.2").unwrap_err(),
         "Invalid version format"
     );
 }

@@ -1,18 +1,14 @@
 use clap::Parser;
 use std::cmp::Ordering;
-use ver_cmp::{greater_ver, compare_versions};
+use ver_cmp::{compare_versions, greater_ver};
 
-/// Simple program to greet a person
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
     #[arg(long)]
     ver1: String,
-
     #[arg(long)]
     ver2: String,
-
-    // return 0 if ver1 is greater, 1 if ver2 is greater, 2 if equal
     #[arg(short, long, default_value_t = false)]
     compare: bool,
 }
@@ -30,7 +26,7 @@ fn main() {
     } else {
         match greater_ver(&args.ver1, &args.ver2) {
             Ok(ver) => println!("{}", ver),
-            Err(e) => println!("{}", e),
+            Err(e) => println!("Error: {}", e),
         }
     }
 }

@@ -1,9 +1,13 @@
+#[cfg(test)]
 use super::*;
 
 #[test]
 fn test_is_ver_greater() {
     // Returns greater
-    assert_eq!(compare_versions("4.2.3", "1.2.2").unwrap(), Ordering::Greater);
+    assert_eq!(
+        compare_versions("4.2.3", "1.2.2").unwrap(),
+        Ordering::Greater
+    );
     // Returns less
     assert_eq!(compare_versions("0.5.3", "1.2.4").unwrap(), Ordering::Less);
     // Returns equal

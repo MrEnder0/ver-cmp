@@ -1,0 +1,15 @@
+[package]
+name = "ver-cmp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.5.0", features = ["derive"] }
+
+[lib]
+name = "ver_cmp"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ver_cmp_cli"
+path = "src/main.rs"

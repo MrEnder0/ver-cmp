@@ -6,7 +6,7 @@ pub fn compare_versions(ver1: &str, ver2: &str) -> Result<Ordering, &'static str
     let ver1: Vec<u32> = ver1.split('.').map(|s| s.parse().unwrap()).collect();
     let ver2: Vec<u32> = ver2.split('.').map(|s| s.parse().unwrap()).collect();
 
-    // If the version is not in the format x.y.z, return None
+    // If the version is not in the format x.y.z, return an error
     if ver1.len() != 3 || ver2.len() != 3 {
         return Err("Invalid version format");
     }
@@ -18,7 +18,7 @@ pub fn compare_versions(ver1: &str, ver2: &str) -> Result<Ordering, &'static str
             _ => continue,
         }
     }
-    
+
     Ok(Ordering::Equal)
 }
 

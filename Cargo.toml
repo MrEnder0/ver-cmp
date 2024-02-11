@@ -2,6 +2,8 @@
 name = "ver-cmp"
 version = "0.1.1"
 edition = "2021"
+description = "A simple version comparison tool"
+license = "MIT"
 
 [dependencies]
 clap = { version = "4.5.0", features = ["derive"] }

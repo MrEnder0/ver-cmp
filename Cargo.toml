@@ -6,7 +6,10 @@ description = "A simple version comparison tool"
 license = "MIT"
 
 [dependencies]
-clap = { version = "4.5.0", features = ["derive"] }
+clap = { version = "4.5.0", features = ["derive"], optional = true }
+
+[features]
+build-binary = ["clap"]
 
 [lib]
 name = "ver_cmp"
@@ -15,3 +18,4 @@ path = "src/lib.rs"
 [[bin]]
 name = "ver_cmp_cli"
 path = "src/main.rs"
+required-features = ["build-binary"]

@@ -2,19 +2,35 @@
 
 A useful cli-tool and library for compairing semantic versions
 
-## Cli Usage
+## Cli App
+
+### Cli Installation
+
+To build the cli tool, run the following command:
+
+```bash
+cargo build --bin ver_cmp_cli --features build-binary --release
+```
+
+### Cli Usage
 
 ```bash
 ver-cmp --ver1 0.2.3 --ver2 0.2.1
 ```
 
-### Output
+Returns the following
 
 ```bash
 0.2.3
 ```
 
-## Library Usage
+
+> [!TIP]
+> You can use the -c or --compare flag to return a 0 1 or 2 for greater, less, or equal respectively to easily pipe the output to other commands
+
+## Library
+
+This example shows how to use the library to compare two versions and how to handle the result
 
 ```rust
 use ver_cmp::*;

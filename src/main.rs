@@ -5,9 +5,9 @@ use ver_cmp::{compare_versions, greater_ver};
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
-    #[arg(long)]
+    #[arg(long, short = '1')]
     ver1: String,
-    #[arg(long)]
+    #[arg(long, short = '2')]
     ver2: String,
     #[arg(short, long, default_value_t = false)]
     compare: bool,

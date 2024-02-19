@@ -1,12 +1,12 @@
 [package]
 name = "ver-cmp"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
-description = "A simple version comparison tool"
+description = "A simple version comparison tool and library"
 license = "MIT"
 
 [dependencies]
-clap = { version = "4.5.0", features = ["derive"], optional = true }
+clap = { version = "4.5.1", features = ["derive"], optional = true }
 
 [features]
 build-binary = ["clap"]

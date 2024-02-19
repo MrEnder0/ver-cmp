@@ -2,11 +2,12 @@ use std::cmp::Ordering;
 
 mod test;
 
+/// Compares two versions in the format x.y.z and returns the ordering
 pub fn compare_versions(ver1: &str, ver2: &str) -> Result<Ordering, &'static str> {
-    let ver1: Vec<u32> = ver1.split('.').map(|s| s.parse().unwrap()).collect();
-    let ver2: Vec<u32> = ver2.split('.').map(|s| s.parse().unwrap()).collect();
+    let ver1: Vec<u16> = ver1.split('.').map(|s| s.parse().unwrap()).collect();
+    let ver2: Vec<u16> = ver2.split('.').map(|s| s.parse().unwrap()).collect();
 
-    // If the version is not in the format x.y.z, return an error
+    // Return an error if the versions is not in the format x.y.z
     if ver1.len() != 3 || ver2.len() != 3 {
         return Err("Invalid version format");
     }
@@ -22,6 +23,7 @@ pub fn compare_versions(ver1: &str, ver2: &str) -> Result<Ordering, &'static str
     Ok(Ordering::Equal)
 }
 
+/// Returns the greater of two versions in the x.y.z format
 pub fn greater_ver(ver1: &str, ver2: &str) -> Result<String, &'static str> {
     let greater = match compare_versions(ver1, ver2) {
         Ok(Ordering::Greater) => ver1,
@@ -31,4 +33,16 @@ pub fn greater_ver(ver1: &str, ver2: &str) -> Result<String, &'static str> {
     };
 
     Ok(greater.to_string())
+}
+
+/// Returns the lesser of two versions in the x.y.z format
+pub fn lesser_ver(ver1: &str, ver2: &str) -> Result<String, &'static str> {
+    let lesser = match compare_versions(ver1, ver2) {
+        Ok(Ordering::Greater) => ver2,
+        Ok(Ordering::Less) => ver1,
+        Ok(Ordering::Equal) => ver1,
+        Err(_) => return Err("Unable to compare versions due to invalid version format"),
+    };
+
+    Ok(lesser.to_string())
 }

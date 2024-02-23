@@ -1,6 +1,6 @@
 # Ver-CMP
 
-A useful cli-tool and library for compairing semantic versions
+Ver-CMP is a useful cli-tool and library for comparing semantic versions
 
 ## Cli App
 
@@ -18,15 +18,14 @@ cargo build --bin ver_cmp_cli --features build-binary --release
 ver-cmp --ver1 0.2.3 --ver2 0.2.1
 ```
 
-Returns the following
+This script returns the following
 
 ```bash
 0.2.3
 ```
 
-
 > [!TIP]
-> You can use the -c or --compare flag to return a 0 1 or 2 for greater, less, or equal respectively to easily pipe the output to other commands
+> Wanted to pipe this into another command or use it in a script‽ well I got you; use the -c or --compare flag to return a 0 1 or 2 for greater, less, or equal too respectively
 
 ## Library
 
@@ -48,3 +47,5 @@ fn main() {
     }
 }
 ```
+
+You can also look in the [tests](src/test.rs) for more examples of how to use the library

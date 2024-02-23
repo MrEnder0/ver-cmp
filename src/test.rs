@@ -22,8 +22,7 @@ fn test_is_ver_greater() {
         compare_versions("0.2.3", "1.2").unwrap_err(),
         "Invalid version format"
     );
-    // Compares versions with leading zeros\
-    // Returns equal
+    // Compares versions with leading zeros, should return equal
     assert_eq!(
         compare_versions("01.2.3", "1.2.3").unwrap(),
         Ordering::Equal

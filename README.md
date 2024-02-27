@@ -2,6 +2,9 @@
 
 Ver-CMP is a useful cli-tool and library for comparing semantic versions
 
+> [!NOTE]
+> The current minimum supported Rust version is: 1.60.0 (Last checked on 2/27/2024)
+
 ## Cli App
 
 ### Cli Installation

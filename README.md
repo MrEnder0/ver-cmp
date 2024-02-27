@@ -25,11 +25,11 @@ This script returns the following
 ```
 
 > [!TIP]
-> Wanted to pipe this into another command or use it in a script‽ well I got you; use the -c or --compare flag to return a 0 1 or 2 for greater, less, or equal too respectively
+> You can use the -c or --compare flag to return a 0 1 or 2 for greater, less, or equal respectively this can be used to easily pipe the output to other commands
 
 ## Library
 
-This example shows how to use the library to compare two versions and how to handle the result
+This example shows how to use the library to compare two versions and print out the comparison
 
 ```rust
 use ver_cmp::*;

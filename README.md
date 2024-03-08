@@ -1,6 +1,9 @@
 # Ver-CMP
 
-A useful cli-tool and library for compairing semantic versions
+Ver-CMP is a useful cli-tool and library for comparing semantic versions
+
+> [!NOTE]
+> The current minimum supported Rust version is: 1.60.0 (Last checked on 3/7/2024)
 
 ## Cli App
 
@@ -14,19 +17,24 @@ cargo build --bin ver_cmp_cli --features build-binary --release
 
 ### Cli Usage
 
-```bash
-ver-cmp --ver1 0.2.3 --ver2 0.2.1
-```
+The cli tool can be used to compare two versions and print out the comparison in many different formats
 
-Returns the following
+* Basic Comparison
 
 ```bash
-0.2.3
+ver-cmp --ver1 0.2.3 --ver2 0.2.1 
 ```
+Output: 0.2.3 (the greater version)
 
+* Comparison with Flags
+
+```bash
+ver-cmp --ver1 0.2.3 --ver2 0.2.1 -c  
+```
+Output: 0 (indicates  ver1 > ver2)
 
 > [!TIP]
-> You can use the -c or --compare flag to return a 0 1 or 2 for greater, less, or equal respectively this can be used to easily pipe the output to other commands
+> The -c or --compare flag to return a 0 1 or 2 meaning greater, less, or equal respectively; this can be used to easily pipe the output to other commands
 
 ## Library
 
@@ -48,3 +56,5 @@ fn main() {
     }
 }
 ```
+
+You can also take a look in the [tests](src/test.rs) for more examples of how to use the library

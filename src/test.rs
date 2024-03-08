@@ -22,8 +22,7 @@ fn test_is_ver_greater() {
         compare_versions("0.2.3", "1.2").unwrap_err(),
         "Invalid version format"
     );
-    // Compares versions with leading zeros\
-    // Returns equal
+    // Compares versions with leading zeros, should return equal
     assert_eq!(
         compare_versions("01.2.3", "1.2.3").unwrap(),
         Ordering::Equal
@@ -47,5 +46,21 @@ fn test_greater_ver() {
     assert_eq!(
         greater_ver("2.3.4", "4.2").unwrap_err(),
         "Unable to compare versions due to invalid version format"
+    );
+}
+
+#[test]
+fn test_is_version_between() {
+    assert_eq!(is_ver_between("1.0.0", "0.9.0", "1.1.0"), Ok(true));
+    assert_eq!(is_ver_between("1.0.0", "1.0.0", "1.1.0"), Ok(true));
+    assert_eq!(is_ver_between("1.0.0", "0.9.0", "0.9.9"), Ok(false));
+    assert_eq!(is_ver_between("1.0.0", "1.1.0", "2.0.0"), Ok(false));
+    assert_eq!(
+        is_ver_between("1.0.0", "1.0", "1.1.0"),
+        Err("Invalid version format")
+    );
+    assert_eq!(
+        is_ver_between("1.0.0", "1.0.0.0", "1.1.0"),
+        Err("Invalid version format")
     );
 }

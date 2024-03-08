@@ -48,3 +48,19 @@ fn test_greater_ver() {
         "Unable to compare versions due to invalid version format"
     );
 }
+
+#[test]
+fn test_is_version_between() {
+    assert_eq!(is_ver_between("1.0.0", "0.9.0", "1.1.0"), Ok(true));
+    assert_eq!(is_ver_between("1.0.0", "1.0.0", "1.1.0"), Ok(true));
+    assert_eq!(is_ver_between("1.0.0", "0.9.0", "0.9.9"), Ok(false));
+    assert_eq!(is_ver_between("1.0.0", "1.1.0", "2.0.0"), Ok(false));
+    assert_eq!(
+        is_ver_between("1.0.0", "1.0", "1.1.0"),
+        Err("Invalid version format")
+    );
+    assert_eq!(
+        is_ver_between("1.0.0", "1.0.0.0", "1.1.0"),
+        Err("Invalid version format")
+    );
+}

@@ -46,3 +46,17 @@ pub fn lesser_ver(ver1: &str, ver2: &str) -> Result<String, &'static str> {
 
     Ok(lesser.to_string())
 }
+
+/// Returns true if the version is between the lower and upper bounds
+pub fn is_ver_between(ver: &str, lower: &str, upper: &str) -> Result<bool, &'static str> {
+    let lower = compare_versions(ver, lower)?;
+    let upper = compare_versions(ver, upper)?;
+
+    if (lower == Ordering::Greater || lower == Ordering::Equal)
+        && (upper == Ordering::Less || upper == Ordering::Equal)
+    {
+        return Ok(true);
+    }
+
+    Ok(false)
+}
